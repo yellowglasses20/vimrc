@@ -1,0 +1,114 @@
+autocmd GUIEnter * set transparency=240
+
+"set encoding=utf8
+set t_Co=256
+"set laststatus=2
+syntax on
+"set guifont=Ricty_Diminished_Discord:h12
+set guifont=Myrica_M:h12
+
+set nowrap
+
+set noswapfile
+
+set hlsearch
+" " 大文字小文字を区別しない(検索時)
+set ignorecase
+" " ただし大文字を含んでいた場合は大文字小文字を区別する(検索時)
+set smartcase
+"
+" " カーソル位置が右下に表示される
+set ruler
+" " 行番号を付ける
+set number
+" " タブ文字の表示 ^I で表示されるよ
+"set list
+"set listchars=tab:>-,trail:-
+" " コマンドライン補完が強力になる
+set wildmenu
+" " コマンドを画面の最下部に表示する
+set showcmd
+" " クリップボードを共有する(設定しないとvimとのコピペが面倒です)
+set clipboard=unnamed
+"
+" " 改行時にインデントを引き継いで改行する
+"set autoindent
+" " インデントにつかわれる空白の数
+set shiftwidth=2
+" " <Tab>押下時の空白数
+set softtabstop=2
+" " <Tab>押下時に<Tab>ではなく、ホワイトスペースを挿入する
+set expandtab
+" " <Tab>が対応する空白の数
+set tabstop=2
+
+" インクリメント、デクリメントを16進数にする(0x0とかにしなければ10進数です。007をインクリメントすると010に 95 set nf=hex
+" " マウス使えます
+"set mouse=a
+"
+" " インサートモードの時に C-j でノーマルモードに戻る
+imap <C-j> <esc>
+" " [ って打ったら [] って入力されてしかも括弧の中にいる(以下同様)
+imap [ []<left>
+imap ( ()<left>
+imap { {}<left>
+"
+" " ２回esc を押したら検索のハイライトをヤメる
+nmap <Esc><Esc> :nohlsearch<CR><Esc>
+
+"colorscheme codedark
+set columns=210
+set lines=240
+
+set splitbelow
+set splitright
+
+"set autochdir
+
+"set modifiable
+"set write
+
+"vimfiler
+let g:vimfiler_safe_mode_by_default = 0
+let g:vimfiler_enable_auto_cd = 1
+noremap <C-F><C-E> :VimFiler -split -auto-cd -simple -winwidth=40 -no-quit <ENTER>
+
+
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_types  = 1
+"let g:go_highlight_fields = 1
+let g:go_highlight_extra_types = 1
+" let g:go_highlight_structs = 1
+"let g:go_bin_path="C:\\Users\\makoto.yano\\go\\bin\\"
+let g:go_def_mode = 'godef'
+
+nnoremap <silent> ,uy :<C-u>Unite history/yank<CR>
+nnoremap <silent> <Leader>p :<C-u>Unite history/yank<CR>
+nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
+nnoremap <silent> <Leader>ub :<C-u>Unite buffer<CR>
+nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
+nnoremap <silent> ,uu :<C-u>Unite file_mru buffer<CR>
+nnoremap <silent> <Leader>uu :<C-u>Unite file_mru buffer<CR>
+nnoremap <silent> ,uk :<C-u>Unite bookmark<CR>
+nnoremap <silent> <Leader>uk :<C-u>Unite bookmark<CR>
+
+" go-vim
+"nnoremap <silent> ,gf :<C-u>GoFmt<CR>
+nnoremap <silent> ,gds :<C-u>GoDebugStart<CR>
+nnoremap <silent> ,gdn :<C-u>GoDebugNext<CR>
+nnoremap <silent> ,gde :<C-u>GoDebugStop<CR>
+nnoremap <silent> ,gdb :<C-u>GoDebugBreakpoint<CR>
+nnoremap <silent> gb :<C-u>GoBuild<CR>
+
+autocmd FileType vimfiler call unite#custom_default_action('directory', 'cd')
+
+colorscheme iceberg
+
+" vim-fugitive
+set diffopt+=vertical
+
+" nerdtree
+nnoremap <Leader>nt :NERDTree<CR>
+
